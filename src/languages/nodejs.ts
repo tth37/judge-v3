@@ -37,7 +37,7 @@ export const lang =  {
         parameters: ["node", `${binaryDirectory}/a.js`],
         time: time,
         memory: memory,
-        process: 10,
+        process: 30,
         stdin: stdinFile,
         stdout: stdoutFile,
         stderr: stderrFile,

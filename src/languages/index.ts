@@ -46,15 +46,12 @@ export const languages: Language[] = [
     require('./python2'),
     require('./python3'),
     require('./ruby'),
-    // The following languages are dropped now since almost nobody uses them in LibreOJ.
-    // They won't be maintained and use it at your own risk!
-    /*
     require('./vala'),
     require('./lua'),
     require('./luajit'),
     require('./ocaml'),
-    require('./vbnet')
-    */
+    require('./vbnet'),
+    require('./kotlin')
 ].map(f => f.lang);
 
 export function getLanguage(name: string): Language {

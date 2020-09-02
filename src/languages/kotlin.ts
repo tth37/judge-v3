@@ -1,22 +1,21 @@
-export const lang =  {
-    name: "cpp11-clang",
-    sourceFileName: "a.cpp",
-    fileExtension: "cpp",
+export const lang = {
+    name: "kotlin",
+    sourceFileName: "Main.kt",
+    fileExtension: "kt",
     binarySizeLimit: 5000 * 1024,
-
     // Note that these two paths are in the sandboxed environment.
     compile: (sourcePath, outputDirectory) => ({
         // To customize the compilation process,
-        // write a shell script or some other stuff, 
+        // write a shell script or some other stuff,
         // and put it to your sandbox.
-        executable: "/usr/bin/clang++-7",
-        parameters: ["clang++-7", sourcePath, "-o", `${outputDirectory}/a.out`, "-std=c++11", "-O2", "-fdiagnostics-color=always", "-DONLINE_JUDGE"],
-        time: 5000,
+        executable: "/usr/bin/compile-kotlin",
+        parameters: ["compile-kotlin", sourcePath, outputDirectory],
+        time: 20000,
         memory: 1024 * 1024 * 1024 * 2,
-        process: 10,
+        process: 30,
         // This is just a redirection. You can simply ignore this
         // if you can specify custom location for message output
-        // in the parameter of the compiler, or have redirected the compilation 
+        // in the parameter of the compiler, or have redirected the compilation
         // message to somewhere.
         // An example will be available soon.
         stderr: `${outputDirectory}/message.txt`,
@@ -24,7 +23,6 @@ export const lang =  {
         messageFile: 'message.txt',
         workingDirectory: outputDirectory
     }),
-
     run: (binaryDirectory: string,
         workingDirectory: string,
         time: number,
@@ -33,12 +31,11 @@ export const lang =  {
         stdoutFile = null,
         stderrFile = null
     ) => ({
-        executable: `${binaryDirectory}/a.out`,
-        parameters: [],
+        executable: `${binaryDirectory}/run`,
+        parameters: ["run"],
         time: time,
         memory: memory,
-        stackSize: memory,
-        process: 1,
+        process: 25,
         stdin: stdinFile,
         stdout: stdoutFile,
         stderr: stderrFile,
