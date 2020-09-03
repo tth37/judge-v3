@@ -12,6 +12,7 @@ export interface ConfigStructure {
     redis: string;
     dataDisplayLimit: number;
     tempDirectory: string;
+    branchmarkMultiplier: number;
 }
 
 const optionDefinitions = [

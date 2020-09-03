@@ -6,5 +6,6 @@
     "TestData": "/opt/syzoj/data/testdata",
     "Priority": 1,
     "DataDisplayLimit": 100,
-    "TempDirectory": "/tmp"
+    "TempDirectory": "/tmp",
+    "BranchmarkMultiplier": 1
 }

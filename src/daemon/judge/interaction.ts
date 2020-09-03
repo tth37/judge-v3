@@ -61,7 +61,7 @@ export class InteractionJudger extends JudgerBase {
             testDataName: this.testData.name,
             inputData: curCase.input,
             answerData: curCase.output,
-            time: this.parameters.timeLimit,
+            time: Math.ceil(this.parameters.timeLimit / Cfg.branchmarkMultiplier),
             memory: this.parameters.memoryLimit,
             userExecutableName: this.userCodeExecuableName,
             interactorExecutableName: this.interactorExecutableName
@@ -76,7 +76,7 @@ export class InteractionJudger extends JudgerBase {
 
         return {
             type: runResult.result,
-            time: runResult.time,
+            time: Math.round(runResult.time * Cfg.branchmarkMultiplier),
             memory: runResult.memory,
             userError: runResult.userError,
             userOutput: null,

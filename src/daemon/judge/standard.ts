@@ -61,7 +61,7 @@ export class StandardJudger extends JudgerBase {
             testDataName: this.testData.name,
             inputData: curCase.input,
             answerData: curCase.output,
-            time: this.parameters.timeLimit,
+            time: Math.ceil(this.parameters.timeLimit / Cfg.branchmarkMultiplier),
             memory: this.parameters.memoryLimit,
             fileIOInput: this.parameters.fileIOInput,
             fileIOOutput: this.parameters.fileIOOutput,
@@ -77,7 +77,7 @@ export class StandardJudger extends JudgerBase {
 
         return {
             type: runResult.result,
-            time: runResult.time,
+            time: Math.round(runResult.time * Cfg.branchmarkMultiplier),
             memory: runResult.memory,
             userError: runResult.userError,
             userOutput: runResult.userOutput,
