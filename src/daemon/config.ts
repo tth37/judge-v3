@@ -35,7 +35,8 @@ export const globalConfig: ConfigStructure = {
     priority: configJSON.Priority,
     redis: configJSON.RedisUrl,
     dataDisplayLimit: configJSON.DataDisplayLimit,
-    tempDirectory: configJSON.TempDirectory
+    tempDirectory: configJSON.TempDirectory,
+    branchmarkMultiplier: configJSON.BranchmarkMultiplier
 }
 
 configureWinston(options.verbose);
