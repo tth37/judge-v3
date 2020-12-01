@@ -13,7 +13,8 @@
     "SandboxEnvironments": [
         "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
         "PYTHONIOENCODING=utf8",
-        "HOME=/tmp"
+        "HOME=/tmp",
+        "GOCACHE=/tmp"
     ],
     "SandboxUser": "nobody",
     "SandboxRoot": "/opt/syzoj/sandbox/rootfs",

@@ -51,7 +51,10 @@ export const languages: Language[] = [
     require('./luajit'),
     require('./ocaml'),
     require('./vbnet'),
-    require('./kotlin')
+    require('./kotlin'),
+    require('./go'),
+    require('./rust'),
+    require('./fsharp')
 ].map(f => f.lang);
 
 export function getLanguage(name: string): Language {

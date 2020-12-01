@@ -1,7 +1,7 @@
 export const lang =  {
-    name: "csharp",
-    sourceFileName: "Main.cs",
-    fileExtension: "cs",
+    name: "fsharp",
+    sourceFileName: "Main.fs",
+    fileExtension: "fs",
     binarySizeLimit: 10 * 1024 * 1024,
 
     // Note that these two paths are in the sandboxed environment.
@@ -9,8 +9,8 @@ export const lang =  {
         // To customize the compilation process,
         // write a shell script or some other stuff, 
         // and put it to your sandbox.
-        executable: "/usr/bin/csc",
-        parameters: ["csc", "-nologo", `-out:${outputDirectory}/Main.exe`, sourcePath],
+        executable: "/usr/bin/fsharpc",
+        parameters: ["fsharpc", "--nologo", `--out:${outputDirectory}/Main.exe`, sourcePath],
         time: 10000,
         memory: 1024 * 1024 * 1024 * 2,
         process: 20,
