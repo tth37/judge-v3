@@ -14,7 +14,8 @@
         "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
         "PYTHONIOENCODING=utf8",
         "HOME=/tmp",
-        "GOCACHE=/tmp"
+        "GOCACHE=/tmp",
+        "LC_ALL=en_US.UTF-8"
     ],
     "SandboxUser": "nobody",
     "SandboxRoot": "/opt/syzoj/sandbox/rootfs",
