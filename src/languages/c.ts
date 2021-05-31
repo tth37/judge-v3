@@ -9,8 +9,8 @@ export const lang =  {
         // To customize the compilation process,
         // write a shell script or some other stuff, 
         // and put it to your sandbox.
-        executable: "/usr/bin/clang-7",
-        parameters: ["clang-7", sourcePath, "-o", `${outputDirectory}/a.out`, "-O2", "-fdiagnostics-color=always", "-DONLINE_JUDGE", "-lm"],
+        executable: "/usr/bin/clang",
+        parameters: ["clang", sourcePath, "-o", `${outputDirectory}/a.out`, "-O2", "-fdiagnostics-color=always", "-DONLINE_JUDGE", "-lm"],
         time: 5000,
         memory: 1024 * 1024 * 1024 * 2,
         process: 10,

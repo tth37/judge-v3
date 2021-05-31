@@ -10,7 +10,7 @@ export const lang =  {
         // write a shell script or some other stuff, 
         // and put it to your sandbox.
         executable: "/usr/bin/valac",
-        parameters: ["valac", sourcePath, "-o", `${outputDirectory}/a.out`, "-D", "ONLINE_JUDGE", "-X", "-O2"],
+        parameters: ["valac", sourcePath, "-o", `${outputDirectory}/a.out`, "-D", "ONLINE_JUDGE", "--cc=clang", "-X", "-O2"],
         time: 5000,
         memory: 1024 * 1024 * 1024 * 2,
         process: 50,
