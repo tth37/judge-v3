@@ -54,7 +54,9 @@ export const languages: Language[] = [
     require('./kotlin'),
     require('./go'),
     require('./rust'),
-    require('./fsharp')
+    require('./fsharp'),
+    require('./scala'),
+    require('./swift')
 ].map(f => f.lang);
 
 export function getLanguage(name: string): Language {
