@@ -57,8 +57,8 @@ export async function readFileLength(path: string, lengthLimit: number, appendPr
     try {
         file = await fse.open(path, 'r');
         const actualSize = (await fse.stat(path)).size;
-        const buf = new Buffer(Math.min(actualSize, lengthLimit));
-        const bytesRead = await fse.read(file, buf, 0, buf.length, 0) as any as number;
+        const buf = Buffer.alloc(Math.min(actualSize, lengthLimit));
+        const bytesRead = (await fse.read(file, buf, 0, buf.length, 0)).bytesRead;
         let ret = buf.toString('utf8', 0, bytesRead);
         if (bytesRead < actualSize) {
             ret += '\n' + appendPrompt(actualSize, bytesRead);

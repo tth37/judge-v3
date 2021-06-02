@@ -1,15 +1,19 @@
 import commandLineArgs = require('command-line-args');
 import fs = require('fs');
-import winston = require('winston');
 import { configureWinston } from '../winston-common';
+import { getUidAndGidInSandbox } from 'simple-sandbox';
 
 export interface SandboxConfigBase {
     chroot: string;
     mountProc: boolean;
     redirectBeforeChroot: boolean;
-    user: string;
+    user: {
+        uid: number;
+        gid: number;
+    };
     cgroup: string;
     environments: string[];
+    hostname: string;
 }
 
 export interface ConfigStructure {
@@ -64,9 +68,10 @@ export const globalConfig: ConfigStructure = {
         chroot: sharedConfig.SandboxRoot,
         mountProc: true,
         redirectBeforeChroot: false,
-        user: sharedConfig.SandboxUser,
+        user: getUidAndGidInSandbox(sharedConfig.SandboxRoot, sharedConfig.SandboxUser),
         cgroup: instanceConfig.SandboxCgroup,
-        environments: sharedConfig.SandboxEnvironments
+        environments: sharedConfig.SandboxEnvironments,
+        hostname: sharedConfig.SandboxHostname
     },
 }
 

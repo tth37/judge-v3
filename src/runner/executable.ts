@@ -40,9 +40,9 @@ export async function fetchBinary(name: string): Promise<[string, Language, stri
     const lockFileName = pathLib.join(Cfg.binaryDirectory, `${name}-get.lock`);
 
     const metadata = msgpack.decode(await getRedis(name + redisMetadataSuffix)) as BinaryMetadata;
-    const isCurrentlyWorking = await fse.exists(lockFileName);
+    const isCurrentlyWorking = await fse.pathExists(lockFileName);
     // The binary already exists, no need for locking
-    if (await fse.exists(targetName) && !isCurrentlyWorking) {
+    if (await fse.pathExists(targetName) && !isCurrentlyWorking) {
         winston.debug(`Binary ${name} exists, no need for fetching...`);
     } else {
         winston.debug(`Acquiring lock ${lockFileName}...`);
@@ -52,7 +52,7 @@ export async function fetchBinary(name: string): Promise<[string, Language, stri
         let ok = false;
         try {
             winston.debug(`Got lock for ${name}.`);
-            if (await fse.exists(targetName)) {
+            if (await fse.pathExists(targetName)) {
                 winston.debug(`Work ${name} done by others...`);
             } else {
                 winston.debug(`Doing work: fetching binary for ${name} ...`);

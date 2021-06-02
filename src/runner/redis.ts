@@ -12,13 +12,13 @@ const redisClient = redis.createClient(Cfg.redis, { detect_buffers: true }) as a
 
 export async function put(name: string, content: Buffer): Promise<void> {
     winston.debug(`Putting ${name}, size = ${content.byteLength}`);
-    await redisClient.setAsync(new Buffer(name), content);
+    await redisClient.setAsync(Buffer.from(name), content);
     winston.debug(`${name} has been put.`);
 }
 
 export async function get(name: string): Promise<Buffer> {
     winston.debug(`Getting redis record ${name}`);
-    const result = await redisClient.getAsync(new Buffer(name)) as Buffer;
+    const result = await redisClient.getAsync(Buffer.from(name)) as Buffer;
     if (result == null) {
         winston.warn(`Redis record ${name} unavailable`);
         throw new Error(`Redis record ${name} unavailable.`);

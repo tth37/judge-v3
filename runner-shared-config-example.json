@@ -19,5 +19,6 @@
     ],
     "SandboxUser": "nobody",
     "SandboxRoot": "/opt/syzoj/sandbox/rootfs",
-    "BinaryDirectory": "/opt/syzoj/sandbox/bin"
+    "BinaryDirectory": "/opt/syzoj/sandbox/bin",
+    "SandboxHostname": "OnlineJudge"
 }

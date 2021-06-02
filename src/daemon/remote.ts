@@ -1,4 +1,4 @@
-import * as url from 'url';
+import { URL } from 'url';
 import * as util from 'util';
 import { globalConfig as Cfg } from './config';
 import msgpack = require('msgpack-lite');
@@ -11,9 +11,9 @@ let socketIOConnection: SocketIOClient.Socket;
 let cancelCurrentPull: Function;
 
 export async function connect() {
-    const socketIOUrl = url.resolve(Cfg.serverUrl, 'judge');
+    const socketIOUrl = new URL('judge', Cfg.serverUrl).href;
     winston.verbose(`Connect to Socket.IO "${socketIOUrl}"...`);
-    socketIOConnection = SocketIOClient(socketIOUrl);
+    socketIOConnection = SocketIOClient.io(socketIOUrl);
 
     socketIOConnection.on('disconnect', () => {
         winston.verbose(`Disconnected from Socket.IO "${socketIOUrl}"...`);
@@ -28,7 +28,7 @@ export async function disconnect() {
 export async function waitForTask(handle: (task: JudgeTask) => Promise<void>) {
     while (true) {
         winston.verbose('Waiting for new task...');
-        await new Promise((resolve, reject) => {
+        await new Promise<void>((resolve, reject) => {
             // This should be cancelled if socket disconnects.
             let cancelled = false;
             cancelCurrentPull = () => {

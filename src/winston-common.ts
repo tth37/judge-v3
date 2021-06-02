@@ -10,12 +10,17 @@ function formatter(args) {
 export function configureWinston(verbose: boolean) {
     winston.configure({
         transports: [
-            new (winston.transports.Console)({ formatter: formatter })
+            new (winston.transports.Console)({
+                format: winston.format.combine(
+                    winston.format.colorize(),
+                    winston.format.simple()
+                )
+            })
         ]
     });
     if (verbose) {
-        (winston as any).level = 'debug';
+        winston.level = 'debug';
     } else {
-        (winston as any).level = 'info';
+        winston.level = 'info';
     }
 }

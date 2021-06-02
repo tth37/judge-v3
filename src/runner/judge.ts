@@ -3,7 +3,7 @@ import randomString = require('randomstring');
 import util = require('util');
 import fse = require('fs-extra');
 import winston = require('winston');
-const syspipe = require('syspipe');
+const syspipe = require('@4qwerty7/syspipe');
 
 import { SandboxStatus } from 'simple-sandbox/lib/interfaces';
 import { TestcaseResultType, StandardRunTask, StandardRunResult, InteractionRunTask, AnswerSubmissionRunTask, AnswerSubmissionRunResult } from '../interfaces';
@@ -289,8 +289,14 @@ export async function judgeInteraction(task: InteractionRunTask)
         winston.debug("Fetching interactor binary...");
         const [interactorBinaryDirectory, interactorLanguage] = await fetchBinary(task.interactorExecutableName);
 
-        pipe1 = syspipe.pipe(),
-            pipe2 = syspipe.pipe();
+        function getPipe() {
+            const pipe = syspipe.pipe();
+            syspipe.fcntl_set_cloexec(pipe.read, true);
+            syspipe.fcntl_set_cloexec(pipe.write, true);
+            return pipe;
+        }
+        pipe1 = getPipe(),
+        pipe2 = getPipe();
 
         const [userProgramTaskPromise, stopUser] = await runProgram(userLanguage,
             userBinaryDirectory,

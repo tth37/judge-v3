@@ -3,7 +3,7 @@ import { globalConfig as Cfg } from './config';
 import msgpack = require('msgpack-lite');
 import winston = require('winston');
 import util = require('util');
-import uuid = require('uuid');
+import { v4 as uuid } from 'uuid';
 import { RPCRequest, RPCReplyType, RPCReply } from '../interfaces';
 import { cleanUp } from './cleanup';
 import * as rmqCommon from '../rmq-common';

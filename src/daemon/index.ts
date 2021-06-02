@@ -16,7 +16,7 @@ import { JudgeResult, ErrorType, ProgressReportType, OverallResult, SerializedBu
     await remote.waitForTask(async (task) => {
         if (task.extraData) {
             const extraData: SerializedBuffer = task.extraData as any as SerializedBuffer;
-            if (extraData.type === "Buffer") task.extraData = new Buffer(extraData.data);
+            if (extraData.type === "Buffer") task.extraData = Buffer.from(extraData.data);
         }
 
         let result: OverallResult;

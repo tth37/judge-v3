@@ -1,13 +1,11 @@
 import klaw = require('klaw');
-import posix = require('posix');
 import fse = require('fs-extra');
 import { ExecParam } from '../languages';
 import {cloneObject} from '../utils';
-import { SandboxParameter, MountInfo } from 'simple-sandbox/src/interfaces';
+import { SandboxParameter, MountInfo } from 'simple-sandbox/lib/interfaces';
 import { globalConfig as Cfg } from './config';
 
 export function setWriteAccess(dirName: string, writeAccess: boolean): Promise<void> {
-    const user = posix.getpwnam(Cfg.sandbox.user);
     const operations: Promise<void>[] = [];
     return new Promise<void>((res, rej) => {
         klaw(dirName).on('data', (item) => {
@@ -15,7 +13,7 @@ export function setWriteAccess(dirName: string, writeAccess: boolean): Promise<v
                 const path = item.path;
                 await fse.chmod(path, 0o755);
                 if (writeAccess) {
-                    await fse.chown(path, user.uid, user.gid);
+                    await fse.chown(path, Cfg.sandbox.user.uid, Cfg.sandbox.user.gid);
                 } else {
                     await fse.chown(path, process.getuid(), process.getgid());
                 }

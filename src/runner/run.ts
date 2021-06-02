@@ -24,7 +24,7 @@ export interface DiffResult {
 export async function runDiff(dataDir: string, file1: string, file2: string): Promise<DiffResult> {
     await setWriteAccess(dataDir, true);
     const tmpPath = '/sandbox/1', outputFileName = 'diff.txt';
-    const sandbox = await startSandbox(Object.assign({
+    const sandbox = startSandbox(Object.assign({
         executable: '/usr/bin/diff',
         parameters: ['/usr/bin/diff', '-Bbq', file1, file2],
         time: Cfg.spjTimeLimit,
@@ -77,7 +77,7 @@ export async function runProgram(language: Language,
     }]);
 
     let result: SandboxResult = null;
-    const sandbox = await startSandbox(sandboxParam);
+    const sandbox = startSandbox(sandboxParam);
     return [(async () => {
         result = await sandbox.waitForStop();
 
