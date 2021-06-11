@@ -363,10 +363,10 @@ export async function judgeInteraction(task: InteractionRunTask)
         if (status == null) {
             const scoreString = await tryReadFile(spjWorkingDir + '/score.txt');
             const rawScore = Number(scoreString);
-            if ((!scoreString) || isNaN(rawScore)) {
+            if ((!scoreString) || isNaN(rawScore) || rawScore < 0 || rawScore > spjFullScore) {
                 score = null;
                 status = TestcaseResultType.JudgementFailed;
-                message = `Interactor returned a non-number score ${scoreString}`;
+                message = `Interactor returned an unrecoginzed score: ${scoreString}`;
             } else if (rawScore === -1) {
                 status = TestcaseResultType.InvalidInteraction;
             } else {
