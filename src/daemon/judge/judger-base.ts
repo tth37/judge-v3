@@ -66,8 +66,8 @@ export abstract class JudgerBase {
             updateSubtaskScore(currentTask, currentResult);
         }
 
-        const reportProgress = function () {
-            reportProgressResult({ subtasks: results });
+        const reportProgress = async function () {
+            await reportProgressResult({ subtasks: results });
         }
         winston.debug(`Totally ${results.length} subtasks.`);
 
