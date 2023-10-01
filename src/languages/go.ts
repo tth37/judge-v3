@@ -13,7 +13,7 @@ export const lang =  {
         parameters: ["go", "build", "-o", `${outputDirectory}/a.out`, sourcePath],
         time: 10000,
         memory: 1024 * 1024 * 1024 * 2,
-        process: 50,
+        process: 80,
         // This is just a redirection. You can simply ignore this
         // if you can specify custom location for message output
         // in the parameter of the compiler, or have redirected the compilation 
